@@ -75,7 +75,7 @@ export default class UserList extends React.Component {
                   instance,
                   event: e
                 })
-                this.props.onRowClick(8)
+                this.props.onRowClick(rowInfo['original']['_id'])
               }
             }
           }}

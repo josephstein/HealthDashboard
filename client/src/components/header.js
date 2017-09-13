@@ -5,7 +5,7 @@ export default class Header extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-inverse navbar-default">
-            <div className="container-fluid">
+            <div>
                 <div className="navbar-header"><a className="navbar-brand" href="/">Care Coordinator Dashboard</a></div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav pull-right">
