@@ -2,12 +2,13 @@ import React from 'react'
 import Basics from './user_details_basics'
 import Compliances from './user_details_compliances'
 import Prescriptions from './user_details_prescriptions'
+import { connect } from 'react-redux'
 
 const TAB_BASICS = "TAB_BASICS"
 const TAB_PRESCRIPTIONS = "TAB_PRESCRIPTIONS"
 const TAB_COMPLIANCES = "TAB_COMPLIANCES"
 
-export default class UserDetails extends React.Component {
+class UserDetails extends React.Component {
   constructor(props) {
     super(props)
 
@@ -97,3 +98,9 @@ export default class UserDetails extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { user: state.selected_user.data }
+}
+
+export default connect(mapStateToProps)(UserDetails)

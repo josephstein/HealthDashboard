@@ -2,34 +2,51 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-  id: { 
-    type: String,
+  _id: { 
+    type: Schema.Types.ObjectId,
     required: true,
     unique: true 
-  },
-  salt: { 
-    type: String,
-    required: true
-  },
-  phoneNumber: { 
-    type: Number,
-    required: true
   },
   username: { 
     type: String,
     required: true,
     unique: true 
   },
-  provider: { 
-    type: String,
-    required: true
-  },
-  program: { 
-    type: String,
-    required: true
-  }
+  salt: String,
+  phoneNumber: Number,
+  provider: String,
+  program: String,
+  acuity: String,
+  doctor: String,
+  insurance: String,
+  dateofbirth: String,
+  deviceId: String,
+  pharmacyType: String,
+  failedOutreach: Boolean,
+  activeDate: Date,
+  active: Boolean,
+  threedayperc: Number,
+  isAlarmsEnable: Boolean,
+  isCall: Boolean,
+  isEmail: Boolean,
+  isText: Boolean,
+  gracePeriod: Number,
+  compliance: Number,
+  futureReminderTime: Number,
+  created: Date,
+  timeString: String,
+  timezone: String,
+  password: String,
+  compliancePerc: Number,
+  email: String,
+  lastName: String,
+  firstName: String,
+  riskscore: Number,
+  mostMissed: Number,
+  weektoweek: Number,
+  streak: Number
 })
 
-const ModelClass = mongoose.model('user', userSchema)
+const ModelClass = mongoose.model('User', userSchema, "Users")
 
 module.exports = ModelClass

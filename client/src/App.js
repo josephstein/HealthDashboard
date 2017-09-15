@@ -4,7 +4,7 @@ import Header from './components/header'
 import UserList from './components/user_list'
 import UserDetails from './components/user_details'
 import { connect } from 'react-redux'
-import { fetchUsers } from './actions'
+import { fetchUsers, setSelectedUser } from './actions'
 
 /* TODO:
  * - Fix responsiveness (sidebar never shows!)
@@ -34,7 +34,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      selectedUserId: "5705133ddc30a5c3693836d5", //null
+      isSidebarHidden: true
     }
   }
 
@@ -42,34 +42,35 @@ class App extends Component {
     this.props.fetchUsers()
   }
 
-  handleRowClick(userId) {
+  handleRowClick(selectedUserId) {
+    const selectedUser = this.props.users.find((user) => { return user._id === selectedUserId })
+    if (!selectedUser) { return }
+
+    this.props.setSelectedUser(selectedUser)
+
     this.setState({
-      selectedUserId: userId
+      isSidebarHidden: false
     })
   }
 
   handleUserDetailsCloseClick() {
     this.setState({
-      selectedUserId: null
+      isSidebarHidden: true
     })
   }
 
-  renderSideBar(shouldRender) {
-    if (!shouldRender) { return }
-
-    const selectedUser = this.props.users.find((user) => { return user._id === this.state.selectedUserId })
-    if (!selectedUser) { return }
+  renderSideBar() {
+    if (this.state.isSidebarHidden) { return }
 
     return (
       <div className="col-md-4">
-        <UserDetails user={selectedUser} onCloseClick={this.handleUserDetailsCloseClick.bind(this)} />
+        <UserDetails onCloseClick={this.handleUserDetailsCloseClick.bind(this)} />
       </div>
     )
   }
 
   render() {
-    const showSideBar = this.state.selectedUserId != null
-    const userListClassName = "col-md-" + (showSideBar ? "8" : "12")
+    const userListClassName = "col-md-" + (!this.state.isSidebarHidden ? "8" : "12")
 
     return (
       <div className="container-fluid">
@@ -78,7 +79,7 @@ class App extends Component {
           <div className={userListClassName}>
             <UserList data={this.props.users} onRowClick={this.handleRowClick.bind(this)} />
           </div>
-          {this.renderSideBar(showSideBar)}
+          {this.renderSideBar()}
           {this.props.children}
         </div>
       </div>
@@ -90,4 +91,4 @@ function mapStateToProps(state) {
   return { users: state.users }
 }
 
-export default connect(mapStateToProps, { fetchUsers })(App)
+export default connect(mapStateToProps, { fetchUsers, setSelectedUser })(App)
