@@ -1,12 +1,11 @@
 import React from 'react'
 import _ from 'lodash'
+import { connect } from 'react-redux'
 import { 
   renderDateRow,
   renderTextRow,
   renderBooleanRow
  } from './utils'
-
-import { connect } from 'react-redux'
 
 class UserDetailsPrescriptions extends React.Component {
   renderSchedule(values) {
@@ -61,8 +60,9 @@ class UserDetailsPrescriptions extends React.Component {
   }
   
 
-  renderPrescriptions() {
-    return _.map(this.props.prescriptions, prescription => {
+  renderPrescriptions(prescriptions) {
+    const sortedPrescriptions = _.sortBy(prescriptions, 'name')
+    return _.map(sortedPrescriptions, prescription => {
       return (
         <div className="panel panel-default" key={prescription._id}>
           <div className="panel-heading">
@@ -93,11 +93,12 @@ class UserDetailsPrescriptions extends React.Component {
 
   render() {
     const { prescriptions } = this.props
-    if (!prescriptions) { return }
+    if (!prescriptions) {  return <div>No prescriptions available</div> }
 
     return (
       <div>
-        {this.renderPrescriptions()}
+        <h5>{prescriptions.length} Prescriptions</h5>
+        {this.renderPrescriptions(prescriptions)}
       </div>
     )
   }

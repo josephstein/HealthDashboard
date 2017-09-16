@@ -17,7 +17,7 @@ class UserDetailsBasics extends React.Component {
 
   render() {
     const { user } = this.props
-    if (!user) { return }
+    if (!user) { return <div>No information provided</div> }
 
     return (
       <div>
