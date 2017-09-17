@@ -10,10 +10,11 @@ export default class UserList extends React.Component {
     return (
       <div>
         <ReactTable
+          filterable
           data={data}
           columns={[
             {
-              Header: "Name",
+              Header: "Info",
               columns: [
                 {
                   Header: "First Name",
@@ -23,19 +24,10 @@ export default class UserList extends React.Component {
                   Header: "Last Name",
                   id: "lastName",
                   accessor: d => d.lastName
-                }
-              ]
-            },
-            {
-              Header: "Info",
-              columns: [
-                {
-                  Header: "Birthday",
-                  accessor: "dateofbirth"
                 },
                 {
-                  Header: "Active Date",
-                  accessor: "active"
+                  Header: "Email",
+                  accessor: "email"
                 }
               ]
             },
@@ -58,6 +50,18 @@ export default class UserList extends React.Component {
                   Header: "Risk",
                   accessor: "riskscore"
                 },
+                {
+                  Header: "Week-to-Week",
+                  accessor: "weektoweek"
+                },
+                {
+                  Header: "Most Missed",
+                  accessor: "mostMissed"
+                },
+                {
+                  Header: "3-Day %",
+                  accessor: "threedayperc"
+                },
               ]
             }
           ]}
@@ -65,6 +69,7 @@ export default class UserList extends React.Component {
           className="-striped -highlight"
           showPaginationTop
           showPaginationBottom
+          noDataText="No users found"
           getTdProps={(state, rowInfo, column, instance) => {
             return {
               onClick: e => {
