@@ -38,6 +38,15 @@ class App extends Component {
     this.props.fetchUsers()
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('checkkkk')
+    if (this.props.users === nextProps.users) { return }
+
+    this.setState({
+      isSidebarHidden: true
+    })
+  }
+
   handleRowClick(selectedUserId) {
     const selectedUser = this.props.users.find((user) => { return user._id === selectedUserId })
     if (!selectedUser) { return }
