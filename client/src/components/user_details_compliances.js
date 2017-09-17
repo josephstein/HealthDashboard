@@ -37,7 +37,7 @@ class UserDetailsCompliances extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { compliances: state.selected_user.compliances }
+  return { compliances: state.selectedUser.compliances }
 }
 
 export default connect(mapStateToProps)(UserDetailsCompliances)

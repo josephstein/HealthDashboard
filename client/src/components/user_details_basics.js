@@ -11,10 +11,6 @@ import {
  } from './utils'
 
 class UserDetailsBasics extends React.Component {
-  handleEditClick() {
-    // TODO
-  }
-
   render() {
     const { user } = this.props
     if (!user) { return <div>No information provided</div> }
@@ -68,19 +64,13 @@ class UserDetailsBasics extends React.Component {
             </tbody>
           </table>
         </div>
-
-        <div className="row text-right">
-          <button type="button" className="btn btn-default btn-default btn-sm" onClick={() => this.handleEditClick()}>
-            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
-          </button>
-        </div>
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return { user: state.selected_user.data }
+  return { user: state.selectedUser.data }
 }
 
 export default connect(mapStateToProps)(UserDetailsBasics)

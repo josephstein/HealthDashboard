@@ -7,15 +7,11 @@ import { connect } from 'react-redux'
 import { fetchUsers, setSelectedUser } from './actions'
 
 /* TODO:
- * - Fix responsiveness (sidebar never shows!)
- * - Have sidebar just receive userID instead of user object and actions do a lookup in redux before making network request
  * - highlight active row
 */
 
 /* BONUS:
  * - Format phone numbers
- * - Hyperlink email addresses
- * - Some items listed in readme but 
 */
 
 /* EXPLAIN:

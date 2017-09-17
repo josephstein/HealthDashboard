@@ -65,20 +65,14 @@ class UserDetails extends React.Component {
 
   render() {
     const { user } = this.props
-    if (!user) { return }
+    if (!user) { return <div>Select a user</div> }
     
     const generalClassName = (this.state.activeTab === TAB_BASICS ? "active" : "")
     const compliancesClassName = (this.state.activeTab === TAB_COMPLIANCES ? "active" : "")
     const prescriptionsClassName = (this.state.activeTab === TAB_PRESCRIPTIONS ? "active" : "")
 
     return (
-      <div className="sidebar">
-        <div className="row text-right">
-          <button type="button" className="btn btn-default btn-default btn-sm" onClick={() => this.props.onCloseClick()}>
-            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> Close
-          </button>
-        </div>
-
+      <div>
         <div className="row">
           {this.renderHeader()}
         </div>
@@ -100,7 +94,7 @@ class UserDetails extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.selected_user.data }
+  return { user: state.selectedUser.data }
 }
 
 export default connect(mapStateToProps)(UserDetails)

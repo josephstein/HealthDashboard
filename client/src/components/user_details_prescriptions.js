@@ -97,7 +97,7 @@ class UserDetailsPrescriptions extends React.Component {
 
     return (
       <div>
-        <h5>{prescriptions.length} Prescriptions</h5>
+        <h4>{prescriptions.length} Prescriptions</h4>
         {this.renderPrescriptions(prescriptions)}
       </div>
     )
@@ -105,7 +105,7 @@ class UserDetailsPrescriptions extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { prescriptions: state.selected_user.prescriptions }
+  return { prescriptions: state.selectedUser.prescriptions }
 }
 
 export default connect(mapStateToProps)(UserDetailsPrescriptions)
