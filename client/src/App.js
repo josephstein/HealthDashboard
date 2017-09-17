@@ -2,7 +2,7 @@ import './App.css'
 import React, { Component } from 'react'
 import Header from './components/header'
 import UserList from './components/user_list'
-import UserDetails from './components/user_details'
+import SideBar from './components/side_bar'
 import { connect } from 'react-redux'
 import { fetchUsers, setSelectedUser } from './actions'
 
@@ -64,13 +64,18 @@ class App extends Component {
 
     return (
       <div className="col-md-4">
-        <UserDetails onCloseClick={this.handleUserDetailsCloseClick.bind(this)} />
+        <SideBar onCloseClick={this.handleUserDetailsCloseClick.bind(this)} />
       </div>
     )
   }
 
   render() {
-    const userListClassName = "col-md-" + (!this.state.isSidebarHidden ? "8" : "12")
+    let userListClassName = ""
+    if (this.state.isSidebarHidden) {
+      userListClassName = "col-md-12"
+    } else {
+      userListClassName = "col-md-8 hidden-xs"
+    }
 
     return (
       <div className="container-fluid">
