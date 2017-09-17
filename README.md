@@ -29,6 +29,7 @@ A demo app of a health dashboard used by care coordinators to manage patients at
 
 1. Navigate to `/server` directory
 2. `node index.js`
+3. `mongod` (can be run from any path)
 
 ## Client
 
